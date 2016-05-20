@@ -1,0 +1,62 @@
+config("oxygine") {
+  include_dirs += ["$oxygine_root/src", "$third_party/pthreads/include",
+                   "$third_party/zlib"]
+  lib_dirs = ["$oxygine_root/src/libs", "$third_party/libraries"]
+  libs = ["oxygine-framework", "GL"]
+  defines = []
+
+  if (oxygine_lib_dir != "") {
+    lib_dirs += [oxygine_lib_dir]
+  }
+
+  if (has_libcurl) {
+    include_dirs += ["$third_party/curl"]
+    defines += ["OX_HAVE_LIBCURL"]
+  }
+
+  if (!has_http) {
+    defines += ["OX_NO_HTTP"]
+  }
+
+  if (force_gles) {
+    libs += ["glesv2"]
+  }
+
+  if (use_sdl2) {
+    libs += ["SDL2"]
+  }
+
+  if (is_win) {
+    libs += ["pthreadVCE2", "libcurl_imp", "ws2_32"]
+  } else {
+    libs += ["pthread"]
+  }
+
+  if (has_libpng) {
+    defines += ["OX_HAVE_LIBPNG"]
+    include_dirs += ["$third_party/libpng"]
+
+    if (is_win) {
+      libs += ["png-2015"]
+    } else {
+      libs += ["png16"]
+    }
+  }
+
+  if (has_libjpeg) {
+    defines += ["OX_HAVE_LIBJPEG"]
+    include_dirs += ["$third_party/libjpeg"]
+
+    if (is_win) {
+      libs += ["jpeg-2015"]
+    } else {
+      libs += ["jpeg"]
+    }
+  }
+
+  libs += ["z"]
+
+  if (!is_win) {
+    cflags_cc = ["-std=c++11"]
+  }
+}

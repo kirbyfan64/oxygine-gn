@@ -1,0 +1,6 @@
+# This is an example args.gn that goes in the build directory.
+oxygine_root = "/home/ryan/stuff/oxygine-framework/oxygine"
+oxygine_lib_dir = "/home/ryan/stuff/oxygine-framework/build"
+is_clang = true
+use_gold = false
+include_dirs = ["/usr/include/SDL2", "/usr/include/libpng16"]

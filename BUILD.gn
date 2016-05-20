@@ -1,0 +1,7 @@
+executable("hello") {
+  configs = []
+  configs += ["//oxygine:oxygine"]
+  sources = ["src/example.cpp", "src/main.cpp"]
+  cflags_cc = ["-Wno-reorder"]
+  configs += ["//build/config:no_optimize"]
+}

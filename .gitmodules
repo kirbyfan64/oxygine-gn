@@ -1,0 +1,6 @@
+[submodule "oxygine-framework"]
+	path = oxygine-framework
+	url = https://github.com/oxygine/oxygine-framework.git
+[submodule "build"]
+	path = build
+	url = https://github.com/timniederhausen/gn-build.git

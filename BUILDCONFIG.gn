@@ -1,0 +1,18 @@
+if (target_os == "") {
+  target_os = host_os
+}
+
+if (target_cpu == "") {
+  target_cpu = host_cpu
+}
+
+if (current_cpu == "") {
+  current_cpu = target_cpu
+}
+
+if (current_os == "") {
+  current_os = target_os
+}
+
+import("//build/config/BUILDCONFIG.gn")
+import("//oxygine/config.gni")

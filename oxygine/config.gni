@@ -1,0 +1,33 @@
+declare_args() {
+  has_libjpeg = false
+  has_libpng = false
+  has_libcurl = false
+  has_http = false
+  force_gles = false
+  use_sdl2 = true
+  oxygine_root = ""
+  oxygine_lib_dir = ""
+  include_dirs = []
+
+  if (is_linux) {
+    has_libjpeg = true
+    has_libpng = true
+  } else if (is_mac) {
+    has_libjpeg = true
+    has_libpng = true
+    has_libcurl = true
+    has_http = true
+  }
+}
+
+if (is_win) {
+  _platform_name = "win32"
+} else if (is_mac) {
+  _platform_name = "ios"
+} else if (is_linux) {
+  _platform_name = "linux"
+}
+
+assert(oxygine_root != "", "You must specify the Oxygine root directory.")
+
+third_party = "$oxygine_root/third_party/$_platform_name"
